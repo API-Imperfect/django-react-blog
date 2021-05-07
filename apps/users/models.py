@@ -19,4 +19,4 @@ class User(AbstractUser):
 
     def get_full_name(self):
         full_name = f"{self.first_name} {self.last_name}"
-        return full_name.strip().tile()
+        return full_name.strip().title()
