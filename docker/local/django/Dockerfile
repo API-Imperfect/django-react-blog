@@ -3,7 +3,7 @@ FROM python:3.9.4-slim-buster
 WORKDIR /app
 
 LABEL maintainer="api.imperfect@gmail.com"
-LABEL description="Development iamge for the Blog FullStack Application"
+LABEL description="Development image for the Blog FullStack Application"
 
 ENV PYTHONDONTWRITEBYTECODE 1
 
