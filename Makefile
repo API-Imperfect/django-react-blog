@@ -33,3 +33,9 @@ volume:
 
 postgres-db:
 	docker compose exec postgres-db psql --username=admin --dbname=blog
+
+test:
+	docker compose exec api pytest -p no:warnings --cov=.
+
+test-html:
+	docker compose exec api pytest -p no:warnings --cov=. --cov-report html

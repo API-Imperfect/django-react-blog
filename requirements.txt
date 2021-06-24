@@ -5,3 +5,7 @@ psycopg2-binary==2.8.6
 django-autoslug==1.9.8
 flake8==3.9.1
 black==21.4b2
+pytest-django==4.1.0
+pytest-factoryboy==2.1.0
+Faker==8.1.1
+pytest-cov==2.11.1
