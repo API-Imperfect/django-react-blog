@@ -4,7 +4,7 @@ from .models import Post
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ["author", "title", "slug", "published_status"]
+    list_display = ["post_author", "title", "slug", "published_status"]
 
     class Meta:
         model = Post
