@@ -18,6 +18,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     date_joined = models.DateTimeField(default=timezone.now)
 
+    """USERNAME FIELD is the name of the field on the user 
+    model that is used as the unique identifier"""
+    
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username"]
 
