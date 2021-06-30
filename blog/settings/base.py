@@ -1,3 +1,4 @@
+from datetime import timedelta
 from pathlib import Path
 
 import environ
@@ -109,3 +110,32 @@ AUTHENTICATION_BACKENDS = [
     "allauth.account.auth_backends.AuthenticationBackend",
     "django.contrib.auth.backends.ModelBackend",
 ]
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    "REGISTER_SERIALIZER": "apps.users.serializers.CustomRegisterSerializer"
+}
+
+REST_AUTH_SERIALIZERS = {
+    "PASSWORD_RESET_CONFIRM_SERIALIZER": "apps.users.serializers.CustomPasswordResetSerializer",
+    "USER_DETAILS_SERIALIZER": "apps.profiles.serializers.UserSerializer",
+}
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
+    ),
+}
+
+REST_USE_JWT = True
+JWT_AUTH_COOKIE = "jac"
+JWT_AUTH_REFRESH_COOKIE = "jarc"
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "SIGNING_KEY": env("SIGNING_KEY"),
+    "AUTH_HEADER_TYPES": ("Bearer", "JWT"),
+    "AUTH_HEADER_NAME": "HTTP_AUTHORIZATION",
+}
