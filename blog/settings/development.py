@@ -7,7 +7,15 @@ ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(" ")
 
 DJANGO_APPS += []
 
-THIRD_PARTY_APPS = ["rest_framework"]
+THIRD_PARTY_APPS = [
+    "rest_framework",
+    "rest_framework.authtoken",
+    "allauth",
+    "allauth.account",
+    "dj_rest_auth",
+    "dj_rest_auth.registration",
+    "rest_framework_simplejwt.token_blacklist",
+]
 
 LOCAL_APPS = ["apps.common", "apps.users", "apps.posts"]
 
@@ -33,6 +41,33 @@ DATABASES = {
         "PORT": env("PG_PORT"),
     }
 }
+
+# Allauth settings
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USER_MODEL_USERNAME_FIELD = "username"
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
+ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300
+
+LOGIN_URL = "http://localhost:8080/api/v1/login"
+ACCOUNT_ADAPTER = "apps.users.adapter.CustomDefaultAccountAdapter"
+ACTIVATE_EMAIL_URL = "http://localhost:8080"
+
+#  Email Backend Config
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = env("EMAIL_HOST")
+EMAIL_USE_TLS = True
+EMAIL_PORT = env("EMAIL_PORT")
+EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = "info@blog.com"
+ACCOUNT_EMAIL_SUBJECT_PREFIX = "Email from blog - "
+
 
 # logging
 
